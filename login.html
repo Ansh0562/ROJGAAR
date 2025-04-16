@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FinSol</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .login-btn:hover {
+            background-color: #2980b9;
+        }
+        .signup-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .signup-link a {
+            color: #3498db;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">FinSol</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#challenges">Challenges</a>
+            <a href="index.html#solutions">Solutions</a>
+            <a href="index.html#resources">Resources</a>
+        </div>
+    </nav>
+
+    <div class="login-container">
+        <h2>Login to Your Account</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        <div class="signup-link">
+            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Debug function to show what's happening
+        function debug(message) {
+            console.log('Debug:', message);
+            // Uncomment the line below to see debug messages in the browser
+            // document.getElementById('debug').innerHTML += message + '<br>';
+        }
+
+        // Check if the form exists
+        const loginForm = document.getElementById('loginForm');
+        if (!loginForm) {
+            debug('Login form not found!');
+            alert('Error: Login form not found. Please refresh the page.');
+        } else {
+            debug('Login form found, adding event listener');
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                debug('Form submitted');
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                debug('Email: ' + email);
+                debug('Password length: ' + password.length);
+                
+                // Basic validation
+                if (!email || !password) {
+                    debug('Empty fields detected');
+                    alert('Please fill in all fields');
+                    return;
+                }
+
+                // Email format validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    debug('Invalid email format');
+                    alert('Please enter a valid email address');
+                    return;
+                }
+
+                // Password length validation
+                if (password.length < 6) {
+                    debug('Password too short');
+                    alert('Password must be at least 6 characters long');
+                    return;
+                }
+                
+                debug('All validations passed');
+                
+                // For demo purposes, we'll simulate a successful login
+                if (email === 'demo@example.com' && password === 'password123') {
+                    debug('Login successful');
+                    alert('Login successful!');
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userEmail', email);
+                    window.location.href = 'index.html';
+                } else {
+                    debug('Invalid credentials');
+                    alert('Invalid email or password. For demo, use:\nEmail: demo@example.com\nPassword: password123');
+                }
+            });
+        }
+
+        // Check if user is already logged in
+        window.addEventListener('load', function() {
+            debug('Page loaded, checking login status');
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                debug('User already logged in');
+                alert('You are already logged in!');
+                window.location.href = 'index.html';
+            } else {
+                debug('User not logged in');
+            }
+        });
+    </script>
+    <!-- Add this div for debugging (uncomment the debug function line to use it) -->
+    <div id="debug" style="display: none; color: red; margin-top: 20px;"></div>
+</body>
+</html> 
