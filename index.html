@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-hindi="रोजगार - नौकरी खोज" data-english="Rozgar - Job Search">रोजगार - नौकरी खोज</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-nav {
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            margin-left: 30px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background-color: #ff6b6b;
+        }
+
+        .nav-links a {
+            font-size: 20px;
+            margin: 0 15px;
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        #auth-buttons a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        #auth-buttons a:hover {
+            color: #ff6b6b
+                }
+
+        .search-container {
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .search-container input {
+            padding: 20px;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+
+        .search-btn {
+            padding: 20px 30px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .search-btn:hover {
+            background-color: #ff5252;
+        }
+
+        .job-categories {
+            padding: 50px 20px;
+            background-color: #f8f9fa;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-card i {
+            font-size: 40px;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+
+        .category-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .category-card p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .how-to-use {
+            padding: 50px 20px;
+            background-color: white;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .step h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .step p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .login-btn, .signup-btn {
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .login-btn {
+            background-color: #ff4444;
+            border: 2px solid #ff4444;
+            color: white;
+        }
+
+        .login-btn:hover {
+            background-color: #ff0000;
+            border-color: #ff0000;
+        }
+
+        .signup-btn {
+            background-color: #4CAF50;
+            border: 2px solid #4CAF50;
+            color: white;
+        }
+
+        .signup-btn:hover {
+            background-color: #45a049;
+            border-color: #45a049;
+        }
+
+        .language-toggle {
+            margin-left: 10px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .lang-btn:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .lang-btn i {
+            font-size: 16px;
+        }
+
+        .footer-section:nth-child(2) a {
+            color: #ff4444;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin: 8px 0;
+            padding: 5px 0;
+        }
+
+        .footer-section:nth-child(2) a:hover {
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+
+        .footer-section:nth-child(2) h3 {
+            color: #ff4444;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <nav class="hero-nav">
+                <div class="nav-left">
+                    <div class="logo">रोजगार</div>
+                    <div class="nav-links">
+                        <a href="#home" data-hindi="मुख्य पृष्ठ" data-english="Home">मुख्य पृष्ठ</a>
+                        <a href="#categories" data-hindi="नौकरी के प्रकार" data-english="Job Types">नौकरी के प्रकार</a>
+                        <a href="#how-to" data-hindi="कैसे उपयोग करें" data-english="How to Use">कैसे उपयोग करें</a>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <div id="auth-buttons">
+                        <button class="login-btn" onclick="window.location.href='login.html'" data-hindi="लॉग इन" data-english="Login">लॉग इन</button>
+                        <button class="signup-btn" onclick="window.location.href='signup.html'" data-hindi="साइन अप" data-english="Sign Up">साइन अप</button>
+                    </div>
+                    <div class="language-toggle">
+                        <button class="lang-btn" onclick="toggleLanguage()">
+                            <i class="fas fa-globe"></i>
+                            <span data-hindi="हिंदी" data-english="English">हिंदी</span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            <div class="search-container">
+                <input type="text" data-hindi-placeholder="नौकरी, कौशल या कंपनी का नाम लिखें" data-english-placeholder="Search for jobs, skills, or companies" placeholder="नौकरी, कौशल या कंपनी का नाम लिखें">
+                <button class="search-btn"><i class="fas fa-search"></i> <span data-hindi="खोजें" data-english="Search">खोजें</span></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Categories Section -->
+    <section id="categories" class="job-categories">
+        <h2 data-hindi="नौकरी के प्रकार" data-english="Job Categories">नौकरी के प्रकार</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <i class="fas fa-laptop"></i>
+                <h3 data-hindi="कंप्यूटर नौकरी" data-english="Computer Jobs">कंप्यूटर नौकरी</h3>
+                <p data-hindi="कंप्यूटर से संबंधित सभी नौकरियां" data-english="All computer-related jobs">कंप्यूटर से संबंधित सभी नौकरियां</p>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-store"></i>
+                <h3 data-hindi="दुकान नौकरी" data-english="Shop Jobs">दुकान नौकरी</h3>
+                <p data-hindi="दुकान और बाजार में काम" data-english="Work in shops and markets">दुकान और बाजार में काम</p>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-tools"></i>
+                <h3 data-hindi="मजदूरी का काम" data-english="Labor Jobs">मजदूरी का काम</h3>
+                <p data-hindi="हाथ से किया जाने वाला काम" data-english="Manual labor work">हाथ से किया जाने वाला काम</p>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3 data-hindi="शिक्षण नौकरी" data-english="Teaching Jobs">शिक्षण नौकरी</h3>
+                <p data-hindi="स्कूल और कोचिंग में पढ़ाने का काम" data-english="Teaching in schools and coaching">स्कूल और कोचिंग में पढ़ाने का काम</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section id="how-to" class="how-to-use">
+        <h2 data-hindi="कैसे नौकरी ढूंढें" data-english="How to Find Jobs">कैसे नौकरी ढूंढें</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3 data-hindi="खोजें" data-english="Search">खोजें</h3>
+                <p data-hindi="ऊपर दिए गए बॉक्स में नौकरी का नाम लिखें" data-english="Type job name in the search box above">ऊपर दिए गए बॉक्स में नौकरी का नाम लिखें</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3 data-hindi="चुनें" data-english="Choose">चुनें</h3>
+                <p data-hindi="अपनी पसंद की नौकरी पर क्लिक करें" data-english="Click on your preferred job">अपनी पसंद की नौकरी पर क्लिक करें</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3 data-hindi="आवेदन करें" data-english="Apply">आवेदन करें</h3>
+                <p data-hindi="नौकरी के लिए आवेदन करें" data-english="Apply for the job">नौकरी के लिए आवेदन करें</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 data-hindi="संपर्क करें" data-english="Contact Us">संपर्क करें</h3>
+                <p><i class="fas fa-phone"></i> <span data-hindi="फोन: +91 98765 43210" data-english="Phone: +91 98765 43210">फोन: +91 98765 43210</span></p>
+                <p><i class="fas fa-envelope"></i> <span data-hindi="ईमेल: support@rozgar.com" data-english="Email: support@rozgar.com">ईमेल: support@rozgar.com</span></p>
+                <p><i class="fas fa-map-marker-alt"></i> <span data-hindi="पता: 123, मुख्य सड़क, दिल्ली - 110001" data-english="Address: 123, Main Road, Delhi - 110001">पता: 123, मुख्य सड़क, दिल्ली - 110001</span></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-hindi="मदद" data-english="Help">मदद</h3>
+                <p><a href="#" data-hindi="सामान्य प्रश्न" data-english="FAQ">सामान्य प्रश्न</a></p>
+                <p><a href="#" data-hindi="नौकरी कैसे ढूंढें" data-english="How to Find Jobs">नौकरी कैसे ढूंढें</a></p>
+                <p><a href="#" data-hindi="आवेदन कैसे करें" data-english="How to Apply">आवेदन कैसे करें</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-hindi="हमें फॉलो करें" data-english="Follow Us">हमें फॉलो करें</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p data-hindi="© 2024 रोजगार. सर्वाधिकार सुरक्षित" data-english="© 2024 Rozgar. All rights reserved">© 2024 रोजगार. सर्वाधिकार सुरक्षित</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'hindi';
+
+        function toggleLanguage() {
+            const elements = document.querySelectorAll('[data-hindi], [data-english], [data-hindi-placeholder], [data-english-placeholder]');
+            currentLanguage = currentLanguage === 'hindi' ? 'english' : 'hindi';
+            
+            elements.forEach(element => {
+                if (currentLanguage === 'hindi') {
+                    if (element.hasAttribute('data-hindi-placeholder')) {
+                        element.placeholder = element.getAttribute('data-hindi-placeholder');
+                    } else if (element.hasAttribute('data-hindi')) {
+                        element.textContent = element.getAttribute('data-hindi');
+                    }
+                } else {
+                    if (element.hasAttribute('data-english-placeholder')) {
+                        element.placeholder = element.getAttribute('data-english-placeholder');
+                    } else if (element.hasAttribute('data-english')) {
+                        element.textContent = element.getAttribute('data-english');
+                    }
+                }
+            });
+
+            // Update page title
+            document.title = currentLanguage === 'hindi' ? 'रोजगार - नौकरी खोज' : 'Rozgar - Job Search';
+        }
+
+        window.addEventListener('load', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userEmail = localStorage.getItem('userEmail');
+            
+            const authButtons = document.getElementById('auth-buttons');
+            if (isLoggedIn) {
+                authButtons.innerHTML = `
+                    <span style="color: #333; margin-right: 20px;">नमस्ते, ${userEmail}</span>
+                    <button class="login-btn" id="logoutBtn">लॉग आउट</button>
+                `;
+                
+                document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    try {
+                        localStorage.removeItem('isLoggedIn');
+                        localStorage.removeItem('userEmail');
+                        window.location.reload();
+                    } catch (error) {
+                        console.error('Error during logout:', error);
+                        alert('लॉगआउट करने में समस्या आई। कृपया पृष्ठ को ताज़ा करें।');
+                    }
+                });
+            } else {
+                authButtons.innerHTML = `
+                    <button class="login-btn" onclick="window.location.href='login.html'" data-hindi="लॉग इन" data-english="Login">लॉग इन</button>
+                    <button class="signup-btn" onclick="window.location.href='signup.html'" data-hindi="साइन अप" data-english="Sign Up">साइन अप</button>
+                `;
+            }
+        });
+    </script>
+</body>
+</html> 
